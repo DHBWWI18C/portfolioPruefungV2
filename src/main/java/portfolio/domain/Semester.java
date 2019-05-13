@@ -7,7 +7,9 @@ public enum Semester implements Comparable<Semester>{
    SSCL ("Summer School");
    
    Semester(String description){
-      this.description=description;
+	   if(description != null)
+		   this.description=description;
+	   else description = "";
    }
    
    private String description;

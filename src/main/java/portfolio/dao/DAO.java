@@ -3,6 +3,8 @@ package portfolio.dao;
 import java.util.List;
 
 public interface DAO<T> {
+	String nullString = "#NULL#";
+	
    T get( int id );
    List<T> getAll();
    void insert(T t);
