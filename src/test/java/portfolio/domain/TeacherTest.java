@@ -1,5 +1,6 @@
 package portfolio.domain;
 
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -53,48 +54,72 @@ public class TeacherTest {
     }
     
     //Test shortcut null
-    //TODO null abfangen in Methode oder was soll im Test passieren?
     @Test
     public void constructorTest3() throws Exception {
     	Teacher t4;
-    	String s = "";
+    	String s = null;
 		try {
-			t4 = new Teacher(789, null, "Strenger", "Hendrik", Gender.D);
+			t4 = new Teacher(789, s, "Strenger", "Hendrik", Gender.D);
 		} catch (IllegalArgumentException e) {
 			s = e.getMessage();
 		}
-		assertTrue(1 == 2); //nur damit Methode falsch ist & man sie nicht übersieht
+    	assertEquals(s,"Shortcut darf nicht 'null' sein.");
     }
     
     //ohne Nachname
-    //TODO Leerstring in Methode abfangen oder wie soll der Test aussehen?
     @Test
     public void constructorTest4() {
-    	assertTrue(1 == 2); //markiert nur Methode als Fehler, sodass wir sie nicht vergessen
+    	Teacher t4;
+    	String s = "";
+			try {
+				t4 = new Teacher(789, "ABC", s, "Hendrik", Gender.D);
+			} catch (IllegalArgumentException e) {
+				
+				s = e.getMessage();
+			}
+		assertEquals(s,"Nachname muss mindestens 1 Buchstabe enthalten.");
     }
     
     //Nachname null
-    //TODO Null in Methode abfangen oder wie muss der Test aussehen?
     @Test
     public void constructorTest5() {
-    	assertTrue(1 == 2); //markiert nur Methode als Fehler, sodass wir sie nicht vergessen
-    }
-    
-    //ohne Vorname
-    //TODO Leerstring abfangen ?
-    //TODO RETURNS AUS TEACHER "setVorname" RAUS, GLAUBE ICH
-    @Test
-    public void constructorTest6() {
     	Teacher t4;
     	String s = "";
     	String t = null;
-			t4 = new Teacher(789, "ABC", "Strenger", s, Gender.D);
-    	assertTrue(t4.getVorname().equals(t));
+    		try {
+    			t4 = new Teacher(789, "ABC", t, "Hendrik", Gender.D);
+    		} catch (IllegalArgumentException e) {
+    			s = e.getMessage();
+    		}
+    	assertEquals(s,"Nachname darf nicht 'null' sein.");
     }
     
-  //Vorname null
+  //ohne Nachname
+    @Test
+    public void constructorTest6() {
+    	Teacher t4;
+    	String s = "8";
+			try {
+				t4 = new Teacher(789, "ABC", s, "Hendrik", Gender.D);
+			} catch (IllegalArgumentException e) {
+				
+				s = e.getMessage();
+			}
+		assertEquals(s,"Nachname muss mindestens 1 Buchstabe enthalten.");
+    }
+    
+    //ohne Vorname
     @Test
     public void constructorTest7() {
+    	Teacher t4;
+    	String s = "";
+			t4 = new Teacher(789, "ABC", "Strenger", s, Gender.D);
+    	assertTrue(t4.getVorname().equals(s));
+    }
+    
+    //Vorname null
+    @Test
+    public void constructorTest8() {
     	Teacher t4;
     	String s = "";
     	String t = null;
@@ -104,7 +129,7 @@ public class TeacherTest {
     
     //Gender prüfen
     @Test
-    public void constructorTest8() {
+    public void constructorTest9() {
     	Teacher t4;
 			t4 = new Teacher(789, "ABC", "Strenger", "Hendrik", Gender.D);
     	assertTrue(t4.getGender().equals(Gender.D));
