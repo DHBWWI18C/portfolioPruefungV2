@@ -66,9 +66,22 @@ public class TeacherTest {
     	assertEquals(s,"Shortcut darf nicht 'null' sein.");
     }
     
+  //Test Shortcut Zahl
+    @Test
+    public void constructorTest4() throws Exception {
+    	Teacher t4;
+    	String s = "8";
+		try {
+			t4 = new Teacher(789, "", "Strenger", "Hendrik", Gender.D);
+		} catch (IllegalArgumentException e) {
+			s = e.getMessage();
+		}
+    	assertEquals(s,"Shortcut darf nicht 'null' sein und muss 3 Buchstaben enthalten.");
+    }
+    		
     //ohne Nachname
     @Test
-    public void constructorTest4() {
+    public void constructorTest5() {
     	Teacher t4;
     	String s = "";
 			try {
@@ -82,7 +95,7 @@ public class TeacherTest {
     
     //Nachname null
     @Test
-    public void constructorTest5() {
+    public void constructorTest6() {
     	Teacher t4;
     	String s = "";
     	String t = null;
@@ -96,7 +109,7 @@ public class TeacherTest {
     
   //ohne Nachname
     @Test
-    public void constructorTest6() {
+    public void constructorTest7() {
     	Teacher t4;
     	String s = "8";
 			try {
@@ -110,7 +123,7 @@ public class TeacherTest {
     
     //ohne Vorname
     @Test
-    public void constructorTest7() {
+    public void constructorTest8() {
     	Teacher t4;
     	String s = "";
 			t4 = new Teacher(789, "ABC", "Strenger", s, Gender.D);
@@ -119,7 +132,7 @@ public class TeacherTest {
     
     //Vorname null
     @Test
-    public void constructorTest8() {
+    public void constructorTest9() {
     	Teacher t4;
     	String s = "";
     	String t = null;
@@ -129,7 +142,7 @@ public class TeacherTest {
     
     //Gender prüfen
     @Test
-    public void constructorTest9() {
+    public void constructorTest10() {
     	Teacher t4;
 			t4 = new Teacher(789, "ABC", "Strenger", "Hendrik", Gender.D);
     	assertTrue(t4.getGender().equals(Gender.D));
